@@ -24,6 +24,12 @@ const UserSchema = new Schema({
             state: String
         }
     ],
+    cart: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'product'
+        }
+    ],
     payment_method: [
         {
             payment_type: String,
