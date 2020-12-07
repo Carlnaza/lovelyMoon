@@ -13,6 +13,7 @@ const ProductSchema = new Schema({
     price: Number,
     title: String,
     description: String,
+    style: [String],
     shipping_details: {
         weigth: Number,
         width: Number,
@@ -20,7 +21,7 @@ const ProductSchema = new Schema({
         depth: Number
     },
     quantity: Number,
-    collection: [
+    product_collection: [
         {
             type: String
         }

@@ -2,6 +2,11 @@ const { model, Schema } = require('mongoose')
 
 const UserSchema = new Schema({
     isAdmin: Boolean,
+    username: {
+        type: String,
+        unique: true,
+        required: true
+    },
     first_name: String,
     last_name: String,
     email: {
@@ -14,6 +19,7 @@ const UserSchema = new Schema({
             line1: String,
             line2: String,
             country: String,
+            city: String,
             postal_code: Number,
             state: String
         }

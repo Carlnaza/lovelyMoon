@@ -1,5 +1,4 @@
-const router = require('express').Router;
-
+const router = require('express').Router();
 router.use('/api', require('./collectionControllers.js'))
 router.use('/api', require('./productControllers.js'))
 router.use('/api', require('./orderControllers.js'))
