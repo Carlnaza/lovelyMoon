@@ -2,11 +2,6 @@ const { model, Schema } = require('mongoose')
 
 const UserSchema = new Schema({
     isAdmin: Boolean,
-    username: {
-        type: String,
-        unique: true,
-        required: true
-    },
     first_name: String,
     last_name: String,
     email: {

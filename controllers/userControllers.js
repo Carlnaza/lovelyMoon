@@ -38,7 +38,7 @@ router.post('/users/register', (req, res) => {
     res.json({ name: "PasswordsMatchError", message: 'Passwords do not match.' })
   } else {
     User.register(new User({
-      isAdmin: req.body.isAdmin,
+      isAdmin: false,
       username: lowCaseUName,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
