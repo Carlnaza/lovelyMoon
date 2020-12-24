@@ -7,11 +7,7 @@ router.post('/add_product', (req, res) => {
         price: req.body.price,
         title: req.body.title,
         description: req.body.description,
-        images: [
-            {
-                firebase_image_id: req.body.firebase_image_id
-            }
-        ],
+        images: [req.body.firebase_image_id],
         style: req.body.style,
         quantity: req.body.quantity,
         product_collection: req.body.product_collection
