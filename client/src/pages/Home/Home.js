@@ -170,6 +170,7 @@ const Home = () => {
                             <Products
                                 key={i}
                                 sku={product.sku}
+                                img={product.images[0].firebase_image_id}
                                 price={product.price}
                                 title={product.title}
                                 description={product.description}
