@@ -13,7 +13,7 @@ app.use(require('./controllers'));
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
+  app.get('/*', (req, res) => {
     res.sendFile(resolve(__dirname, 'client', 'build', 'index.html'))
   })
 
@@ -21,6 +21,6 @@ if (process.env.NODE_ENV === 'production') {
 
 require('./config')
   .then(() => app.listen(process.env.PORT || 3001), () => {
-    console.log("App now listening on localhost:3000// :)")
+    console.log(`App now listening on localhost:${process.env.PORT}// :)`)
   })
   .catch(e => console.error(e));
