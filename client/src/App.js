@@ -15,6 +15,28 @@ import PageNotFound from './pages/404Page'
 import Product from './utils/ProductUtils/Product';
 import ProductContext from './utils/ProductUtils/ProductContext';
 
+// Library
+import {
+  createMuiTheme,
+  ThemeProvider
+} from '@material-ui/core'
+
+// Theming ------------------------------->
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Lato',
+      'sans-serif'
+    ].join(',')
+  },
+  listItemText: {
+    fontFamily: [
+      'Lato',
+      'sans-serif'
+    ].join(',')
+  }
+});
+
 const App = () => {
 
   const [productState, setProductState] = useState({
@@ -29,20 +51,23 @@ const App = () => {
 
   return (
     <>
-      <ProductContext.Provider value={productState}>
-        <Switch>
-          <Route path="/" exact component={Intro} />
-          <Route path="/store" exact component={Home} />
-          <Route path="/aboutus" exact component={AboutUs} />
-          <Route path="/contact" exact component={Contact} />
-          <Route path="/myaccount/cart/:id" component={Cart} />
-          <Route path="/admin" exact component={AdminLogin} />
-          <Route path="/admin/dashboard/:id" component={AdminDashboard} />
-          <Route>
-            <PageNotFound />
-          </Route>
-        </Switch>
-      </ProductContext.Provider>
+      <ThemeProvider theme={theme}>
+        <ProductContext.Provider value={productState}>
+          <Switch>
+            <Route path="/" exact component={Intro} />
+            <Route path="/store" exact component={Home} />
+            <Route path="/aboutus" exact component={AboutUs} />
+            <Route path="/contact" exact component={Contact} />
+            <Route path="/myaccount/cart/:id" component={Cart} />
+            <Route path="/admin" exact component={AdminLogin} />
+            <Route path="/admin/dashboard/:id" component={AdminDashboard} />
+            {/* 404 Default Check */}
+            <Route>
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </ProductContext.Provider>
+      </ThemeProvider>
     </>
   );
 }

@@ -15,5 +15,7 @@ app.use(require('./controllers'))
 // })
 
 require('./config')
-  .then(() => app.listen(process.env.PORT || 3001))
+  .then(() => app.listen(process.env.PORT || 3001), () => {
+    console.log("App now listening on localhost:3000// :)")
+  })
   .catch(e => console.error(e))
