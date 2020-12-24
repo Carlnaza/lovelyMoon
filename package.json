@@ -4,12 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "cd client && npm run build",
+    "build": "cd client react-scripts build",
     "install": "cd client && npm install",
-    "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
     "heroku-postbuild": "npm run build"
   },
   "keywords": [],
