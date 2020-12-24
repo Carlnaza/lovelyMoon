@@ -5,11 +5,7 @@ const ProductSchema = new Schema({
         type: String,
         unique: true
     },
-    images: [
-        {
-            firebase_image_id: String
-        }
-    ],
+    images: [String],
     price: Number,
     title: String,
     description: String,

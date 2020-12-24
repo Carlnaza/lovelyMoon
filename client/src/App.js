@@ -46,6 +46,7 @@ const App = () => {
   // Get All Products
   productState.getAllProducts = async () => {
     const { data } = await Product.find();
+    console.log(data[0].images[0])
     setProductState({ ...productState, products: data })
   };
 

@@ -3,6 +3,7 @@ import React, { useEffect, useContext, lazy } from 'react';
 // Components
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer'
+import logo from '../../images/lovelymoon-logo.png'
 
 // Library
 import {
@@ -141,7 +142,7 @@ const Home = () => {
                                 component="img"
                                 alt={props.title}
                                 height="250"
-                                image="https://leanfrontiers.com/wp-content/uploads/2018/12/logo-placeholder-png.png"
+                                image={props.img}
                                 title={props.title}
                             />
                             <CardContent>
@@ -170,7 +171,7 @@ const Home = () => {
                             <Products
                                 key={i}
                                 sku={product.sku}
-                                img={product.images[0].firebase_image_id}
+                                img={product.images.length > 0 ? product.images[0] : logo}
                                 price={product.price}
                                 title={product.title}
                                 description={product.description}
