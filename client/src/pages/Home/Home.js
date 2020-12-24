@@ -165,7 +165,7 @@ const Home = () => {
             <Navbar />
             <HeroBanner />
             <Container>
-                <Grid container spacing={4}>
+                <Grid display="flex" justify="center" container spacing={4}>
                     {
                         products.map((product, i) =>
                             <Products
