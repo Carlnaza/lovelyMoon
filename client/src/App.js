@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 // Pages
 import Intro from './pages/Intro';
 import Home from './pages/Home';
+import Products from './pages/Products'
 import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
 import Cart from './pages/Cart'
@@ -40,13 +41,13 @@ const theme = createMuiTheme({
 const App = () => {
 
   const [productState, setProductState] = useState({
-    products: []
+    products: [],
+    product: {}
   });
 
   // Get All Products
   productState.getAllProducts = async () => {
     const { data } = await Product.find();
-    console.log(data[0].images[0])
     setProductState({ ...productState, products: data })
   };
 
@@ -57,6 +58,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Intro} />
             <Route path="/store" exact component={Home} />
+            <Route path="/products/:id" component={Products} />
             <Route path="/aboutus" exact component={AboutUs} />
             <Route path="/contact" exact component={Contact} />
             <Route path="/myaccount/cart/:id" component={Cart} />

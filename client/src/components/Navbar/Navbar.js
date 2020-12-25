@@ -112,7 +112,9 @@ const Navbar = () => {
             }
             <Drawer />
             <div className={classes.logoContainer}>
-                <img className={classes.logo} alt="lovely moon logo" src={logo} />
+                <Link to="/store">
+                    <img className={classes.logo} alt="lovely moon logo" src={logo} />
+                </Link>
             </div>
             <MainNav />
         </>

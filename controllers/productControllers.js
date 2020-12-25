@@ -26,5 +26,13 @@ router.get('/products', (req, res) => {
         .catch(err => console.log(err))
 })
 
+router.get('/product/:id', (req, res) => {
+    Product.findById(req.params.id)
+        .then(data => {
+            res.json(data)
+        })
+        .catch(err => console.log(err))
+})
+
 
 module.exports = router

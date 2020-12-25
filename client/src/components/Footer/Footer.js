@@ -11,7 +11,8 @@ const useStyles = makeStyles({
         height: '150px',
         width: '100%',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: '4%'
     },
     text: {
         fontWeight: 700,

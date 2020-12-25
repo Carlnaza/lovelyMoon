@@ -127,34 +127,36 @@ const Home = () => {
         return (
             <Fade in timeout={1000}>
                 <Grid
-                    mt={3}
                     item
+                    mt={3}
                     xl={3}
                     lg={3}
                     md={6}
                     sm={6}
                     xs={12}
                 >
-                    <Paper variant="outlined">
-                        <CardActionArea>
-                            <CardMedia
-                                className={classes.productImages}
-                                component="img"
-                                alt={props.title}
-                                height="250"
-                                image={props.img}
-                                title={props.title}
-                            />
-                            <CardContent>
-                                <Typography className={classes.productTitle} align="center" gutterBottom variant="h5" component="h2" noWrap>
-                                    {props.title}
-                                </Typography>
-                                <Typography align="center" variant="h5" color="textSecondary" component="h3" noWrap>
-                                    ${props.price}.00
+                    <Link href={`/products/${props.product_id}`} >
+                        <Paper variant="outlined">
+                            <CardActionArea>
+                                <CardMedia
+                                    className={classes.productImages}
+                                    component="img"
+                                    alt={props.title}
+                                    height="250"
+                                    image={props.img}
+                                    title={props.title}
+                                />
+                                <CardContent>
+                                    <Typography className={classes.productTitle} align="center" gutterBottom variant="h5" component="h2" noWrap>
+                                        {props.title}
+                                    </Typography>
+                                    <Typography align="center" variant="h5" color="textSecondary" component="h3" noWrap>
+                                        ${props.price}.00
                             </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Paper>
+                                </CardContent>
+                            </CardActionArea>
+                        </Paper>
+                    </Link>
                 </Grid>
             </Fade>
         )
@@ -170,6 +172,7 @@ const Home = () => {
                         products.map((product, i) =>
                             <Products
                                 key={i}
+                                product_id={product._id}
                                 sku={product.sku}
                                 img={product.images.length > 0 ? product.images[0] : logo}
                                 price={product.price}

@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import {
     withStyles,
     makeStyles,
-    Link,
-    Box
+    Box,
+    Link
 } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -74,21 +74,21 @@ export default function TemporaryDrawer() {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                <ListItem>
-                    <Link className={classes.listItemLink}>
+                <Link href="/store" className={classes.listItemLink}>
+                    <ListItem>
                         <Button>Home</Button>
-                    </Link>
-                </ListItem>
-                <ListItem >
-                    <Link className={classes.listItemLink}>
+                    </ListItem>
+                </Link>
+                <Link href="/aboutus" className={classes.listItemLink}>
+                    <ListItem >
                         <Button>About Us</Button>
-                    </Link>
-                </ListItem>
-                <ListItem>
-                    <Link className={classes.listItemLink}>
+                    </ListItem>
+                </Link>
+                <Link href="/contact" className={classes.listItemLink}>
+                    <ListItem>
                         <Button>Contact Us</Button>
-                    </Link>
-                </ListItem>
+                    </ListItem>
+                </Link>
                 <Divider />
                 {
                     isLoggedIn ?
