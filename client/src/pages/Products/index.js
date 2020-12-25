@@ -22,7 +22,10 @@ import {
     InputLabel,
     MenuItem,
     Select,
-    Box
+    Box,
+    Divider,
+    Input,
+    useTheme
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,29 +63,33 @@ const useStyles = makeStyles((theme) => ({
             'Lato',
             'sans-serif'
         ].join(',')
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+        maxWidth: 300,
     }
 }));
 
 export default function Products({ match }) {
 
-
     const classes = useStyles();
     const [productState, setProductState] = useState({})
     const [rendered, setRendered] = useState(false);
+    const [style, setStyle] = useState("")
+
+    const handleChange = (event) => {
+        setStyle(event.target.value)
+    }
 
     const getOneItem = async (id) => {
         const { data: product } = await Product.findOne(id)
         setProductState(product)
-    }
-
-    let productStyles = [];
-
-    if (productStyles !== [] || productStyles !== 'undefined') {
-        productStyles = productState.style
+        setRendered(true)
     }
 
     useEffect(() => {
-
+        setRendered(false)
         getOneItem(match.params.id);
 
     }, [])
@@ -90,56 +97,64 @@ export default function Products({ match }) {
 
     return (
         <>
-            {console.log("I fired once")}
-            {console.log(productStyles)}
-            <Navbar />
-            <Container className={classes.root}>
-                <Grid container>
-                    <Grid
-                        item
-                        lg={6}
-                    >
-                        <Paper>
-                            <CardMedia
-                                className={classes.productImages}
-                                component="img"
-                                alt={productState.title}
-                                height="500"
-                                image={productState.images === 'undefined' ? logo : productState.images}
-                                title={productState.title}
-                            />
-                        </Paper>
-                    </Grid>
-                    <Grid
-                        className={classes.productInfo}
-                        item
-                        lg={6}>
-                        <Typography className={classes.h1} component="h1" variant="h1">{productState.title}</Typography>
-                        <Typography className={classes.price} component="h3" variant="h3">${productState.price}.00</Typography>
-                        <Box className={classes.styleInput}>
-                            {/*<FormControl variant="outlined" className={classes.formControl}>
-                                <InputLabel id="demo-simple-select-outlined-label">Style</InputLabel>
-                                 <Select
-                                    labelId="demo-simple-select-outlined-label"
-                                    id="demo-simple-select-outlined"
-                                    value="Style"
-                                    onChange={handleChange}
-                                    label="Style"
+            {
+                rendered ?
+                    <>
+                    {console.log(productState.images[0])}
+                        <Navbar />
+                        <Container className={classes.root}>
+                            <Grid container>
+                                <Grid
+                                    item
+                                    lg={6}
                                 >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
-                                </Select> 
-                            </FormControl>*/}
-                        </Box>
-                        <Button className={classes.cartBtn} variant="outlined">ADD TO CART</Button>
-                    </Grid>
-                </Grid>
-            </Container>
-            <Footer />
+                                    <Paper>
+                                        <CardMedia
+                                            className={classes.productImages}
+                                            component="img"
+                                            alt={productState.title}
+                                            height="500"
+                                            image={productState.images[0] !== undefined ? productState.images[0] : logo}
+                                            title={productState.title}
+                                        />
+                                    </Paper>
+                                </Grid>
+                                <Grid
+                                    className={classes.productInfo}
+                                    item
+                                    lg={6}>
+                                    <Typography className={classes.h1} component="h1" variant="h1">{productState.title}</Typography>
+                                    <Typography className={classes.price} component="h3" variant="h3">${productState.price}.00</Typography>
+                                    <Box className={classes.styleInput}>
+                                        <FormControl variant="outlined" className={classes.formControl}>
+                                            <InputLabel id="demo-simple-select-outlined-label">Styles</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-outlined-label"
+                                                id="demo-simple-select-outlined"
+                                                value={style}
+                                                onChange={handleChange}
+                                                label="style"
+                                            >
+                                                <MenuItem value=""><em>None</em></MenuItem>
+                                                {
+                                                    productState.style.map((item) => {
+                                                        <MenuItem value={item}><p>{item}</p></MenuItem>
+                                                    })
+                                                }
+                                            </Select>
+                                        </FormControl>
+                                    </Box>
+                                    <Divider />
+                                    <Button className={classes.cartBtn} variant="outlined">ADD TO CART</Button>
+                                </Grid>
+                            </Grid>
+                        </Container>
+                        <Footer />
+                    </>
+                    :
+                    <></>
+            }
+
         </>
     )
 };
