@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+// Components
+import logo from '../../images/lovelymoon-logo.png'
+
 // Library
 import {
     makeStyles,
     Typography,
     Grid,
-    Button
+    Button,
+    CardMedia
 } from '@material-ui/core';
 
 
@@ -20,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
     buttonCenter: {
         display: 'flex',
         justifyContent: 'center'
-    }
+    },
+    logo: {
+        height: '100px'
+    },
 }));
 
 const Intro = () => {
@@ -36,19 +43,23 @@ const Intro = () => {
             justify="center"
             style={{ minHeight: '100vh' }}
         >
-            <Grid item xs={3}>
+            <Grid item>
+                <img className={classes.logo} alt="lovely moon logo" src={logo} />
+            </Grid>
+            <Grid item>
                 <Typography
                     className={classes.h1}
                     variant="h1"
                     component="h1"
+                    gutterBottom
                 >
                     Lovely Moon
-                </Typography>
-                <Grid item style={{ textAlign: 'center' }}>
-                    <Link to="/store">
-                        <Button>Shop</Button>
-                    </Link>
-                </Grid>
+                    </Typography>
+            </Grid>
+            <Grid item style={{ textAlign: 'center' }}>
+                <Link to="/store" style={{ textDecoration: 'none' }}>
+                    <Button variant="outlined">Shop</Button>
+                </Link>
             </Grid>
 
         </Grid>
